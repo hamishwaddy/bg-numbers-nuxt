@@ -48,7 +48,7 @@ export default {
         'faArrowAltCircleUp',
         'faAngleDoubleUp',
         'faArrowAltCircleDown',
-        'FaAngleDoubleDown',
+        'faAngleDoubleDown',
         'faPooStorm'
       ],
       regular: [],
