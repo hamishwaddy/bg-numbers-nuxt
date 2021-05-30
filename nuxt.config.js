@@ -11,7 +11,8 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap' }
     ]
   },
 
@@ -31,8 +32,29 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@nuxtjs/fontawesome'
   ],
+  fontawesome: {
+    component: 'fa',
+    // suffix: true,
+    icons: {
+      solid: [
+        'faTachometerAlt',
+        'faChartLine',
+        'faIdCardAlt',
+        'faSignOutAlt',
+        'faArrowAltCircleRight',
+        'faArrowAltCircleUp',
+        'faAngleDoubleUp',
+        'faArrowAltCircleDown',
+        'FaAngleDoubleDown',
+        'faPooStorm'
+      ],
+      regular: [],
+      brands: []
+    }
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -52,11 +74,14 @@ export default {
     }
   },
 
+  // Customise the loading bar
+  loading: { color: '#bada55' },
+
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,

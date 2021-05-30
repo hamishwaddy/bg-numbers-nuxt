@@ -1,14 +1,22 @@
 <template>
-  <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/">
-      Home page
-    </NuxtLink>
+  <v-app>
+    <div class="error-container">
+      <div class="error-message">
+        <h1 class="mt-5">
+          You've gone astray...
+        </h1>
+        <v-img src="/astray.jpeg" class="mt-5" contain />
+      </div>
+      <div class="error-info">
+        <h2 v-if="error.statusCode === 404">
+          {{ pageNotFound }}
+        </h2>
+        <h2 v-else>
+          {{ otherError }}
+        </h2>
+        <span>Return to the <NuxtLink to="/">Home page</NuxtLink></span>
+      </div>
+    </div>
   </v-app>
 </template>
 
@@ -38,7 +46,19 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  font-size: 20px;
+.error-container {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.error-message h1 {
+  text-align: center;
+}
+.error-info {
+  text-align: center;
+}
+a {
+  text-decoration: none;
 }
 </style>
