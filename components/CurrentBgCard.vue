@@ -3,12 +3,12 @@
     <div class="bg-circle">
       <div class="bg-items">
         <h2>
-          {{ ((latestEntry[0].sgv) / 18.018018).toFixed(1) }}
+          {{ ((latestEntry.sgv) / 18.018018).toFixed(1) }}
         </h2>
         <p>{{ currentBg.unit }}</p>
         <fa :icon="arrowDirection" :class="arrowClass" />
         <p>
-          {{ calculateTimeAgo(latestEntry[0].mills) }}
+          {{ calculateTimeAgo(latestEntry.date) }}
         </p>
       </div>
     </div>
@@ -21,7 +21,7 @@ export default {
   name: 'CurrentBgCard',
   props: {
     latestEntry: {
-      type: Array,
+      type: Object,
       required: true
     }
   },
@@ -45,14 +45,14 @@ export default {
   computed: {
     arrowClass () {
       return {
-        'forty-five-up': this.latestEntry[0].direction === 'FortyFiveUp',
-        'forty-five-down': this.latestEntry[0].direction === 'FortyFiveDown'
+        'forty-five-up': this.latestEntry.direction === 'FortyFiveUp',
+        'forty-five-down': this.latestEntry.direction === 'FortyFiveDown'
       }
     },
     arrowDirection () {
       let iconName
       this.icons.filter((i) => {
-        if (i.direction === this.latestEntry[0].direction) {
+        if (i.direction === this.latestEntry.direction) {
           iconName = i.iconString
         }
         return iconName
@@ -71,10 +71,11 @@ export default {
 <style lang="scss" scoped>
 .bg-card {
   align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  // box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   display: flex;
   justify-content: center;
-  padding: 1rem;
+  margin: 1rem 0;
+  padding: 2rem;
 }
 .bg-circle {
   border: 5px solid black;

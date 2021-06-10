@@ -78,7 +78,7 @@ export default {
   }),
   computed: {
     avatarUrl () {
-      const avatarUrl = `https://api.multiavatar.com/${this.username}.png`
+      const avatarUrl = `https://robohash.org/${this.username}?set=set3`
       return avatarUrl
     }
   }

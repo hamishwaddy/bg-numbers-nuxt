@@ -4,37 +4,49 @@
       <section class="current-bg">
         <CurrentBgCard :latest-entry="latestEntry" />
       </section>
-      <section class="bg-chart">
-        bg line charts
-      </section>
+      <div>
+        <BgChartDisplay :initial-data="lastThreeHours" />
+      </div>
     </v-col>
   </v-row>
 </template>
 
 <script>
 import CurrentBgCard from '@/components/CurrentBgCard.vue'
-import { mapState } from 'vuex'
+import BgChartDisplay from '@/components/BgChartDisplay.vue'
 
 export default {
   name: 'HomePage',
   components: {
-    CurrentBgCard
+    CurrentBgCard,
+    BgChartDisplay
   },
-  data: () => ({
-    setIntervalId: null
-  }),
-  async fetch ({ store, error }) {
-    try {
-      await store.dispatch('entries/fetchLatestEntry')
-    } catch (e) {
-      console.log(e)
+  data () {
+    return {
+      setIntervalId: null
     }
   },
-  computed: mapState({
-    latestEntry: state => state.entries.latestEntry
-  }),
+  computed: {
+    latestEntry () {
+      return this.$store.getters.latestEntry
+    },
+    lastThreeHours () {
+      return this.$store.getters.lastThreeHours
+    }
+  },
+  mounted () {
+    this.refreshLatestEntry()
+  },
   beforeDestroy () {
     clearInterval(this.setIntervalId)
+  },
+  methods: {
+    refreshLatestEntry () {
+      clearInterval(this.setIntervalId)
+      this.setIntervalId = setInterval(() => {
+        return this.latestEntry
+      }, 10000)
+    }
   }
 }
 </script>
